@@ -18,7 +18,7 @@ const elementsTable = {
     'figcaption': 'e-📰',
     'img': {
         name: 'e-🖼️',
-        attributes: ['width', 'src', 'alt'],
+        attributes: ['src', 'alt', 'width'],
     },
     'small': 'e-🤫',
     'footer': {
@@ -112,6 +112,7 @@ function registerCustomElements() {
                 this.shadowRoot.appendChild(innerElement);
             }
             attributeChangedCallback(name, _, newValue) {
+                console.log(name, newValue);
                 this.innerElement.setAttribute(name, newValue);
             }
         };

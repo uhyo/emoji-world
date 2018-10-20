@@ -2,6 +2,17 @@ e-🖋️ {
   display: block;
   margin: 1em 0;
 }
+e-🔗 {
+  display: inline;
+}
+e-🗣️,
+e-💩,
+e-📈,
+e-1⃣,
+e-📰,
+e-🦶 {
+  display: block;
+}
 
 body {
   font-size: 1.8rem;
