@@ -27,6 +27,11 @@ end
 
 
 function encodeEmoji(str) {
-    // return [...str].map(e => `\\x{${e.codePointAt(0).toString(16)}}`).join('');
-    return encodeURIComponent(str);
+    return [...str].map(e => {
+        if (e === '\ufe0f') {
+            return `(?:${encodeURIComponent(e)})?`;
+        } else {
+            return encodeURIComponent(e);
+        }
+    }).join('');
 }

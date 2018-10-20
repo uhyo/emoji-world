@@ -11,7 +11,7 @@ const emojis = yaml.safeLoad(
 // remove 異体字セレクタ from keys.
 const result = {};
 for (const key in emojis) {
-    result[key.replace('\ufe0f', '')] = emojis[key];
+    result[key] = emojis[key];
 }
 
 exports.emojis = result;

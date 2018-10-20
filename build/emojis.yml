@@ -7,6 +7,9 @@
 "⚙️":
   ext: "js"
   mimetype: "application/javascript"
+"💄":
+  ext: "css"
+  mimetype: "text/css"
 "🎨":
   ext: "gif"
   mimetype: "image/gif"

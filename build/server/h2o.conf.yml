@@ -8,7 +8,7 @@ hosts:
     file.index:
     - "index.📄"
     - "index.html"
-    header.add: "Cache-Control: public, max-age=3600"
+    # header.add: "Cache-Control: public, max-age=3600"
     paths:
       "/":
         mruby.handler-file: ./path-handler.rb
