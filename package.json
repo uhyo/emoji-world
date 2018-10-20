@@ -1,0 +1,16 @@
+{
+  "name": "emoji-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "build": "cd build && ./index.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "js-yaml": "^3.12.0"
+  }
+}

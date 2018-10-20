@@ -1,0 +1,19 @@
+"📄":
+  ext: "html"
+  mimetype: "text/html"
+"📜":
+  ext: "js"
+  mimetype: "application/javascript"
+"⚙️":
+  ext: "js"
+  mimetype: "application/javascript"
+"🎨":
+  ext: "gif"
+  mimetype: "image/gif"
+"📷":
+  ext: "jpg"
+  mimetype: "image/jpeg"
+"🖼️":
+  ext: "png"
+  mimetype: "image/png"
+

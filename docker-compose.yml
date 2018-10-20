@@ -1,0 +1,10 @@
+version: '3.2'
+services:
+  webserver:
+    build: .
+    volumes:
+      - type: bind
+        source: ./site
+        target: /var/www
+    ports:
+      - "8080:80"

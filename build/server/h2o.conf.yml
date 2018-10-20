@@ -1,0 +1,15 @@
+reproxy: ON
+hosts:
+  default:
+    listen:
+      port: 80
+    file.mime.addtypes:
+      <<: !file ./memap.yml
+    file.index:
+    - "index.📄"
+    - "index.html"
+    header.add: "Cache-Control: public, max-age=3600"
+    paths:
+      "/":
+        mruby.handler-file: ./path-handler.rb
+        file.dir: /var/www
