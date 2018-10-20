@@ -3,22 +3,36 @@ const ce = window.customElements != null;
 
 const elementsTable = {
     'p': 'e-🖋️',
-    'a': 'e-⚓',
+    'a': {
+        name: 'e-🔗',
+        attributes: ['href', 'target'],
+    },
     'button': 'e-👆',
     'header': 'e-🗣️',
-    'h1': 'e-1⃣',
+    'h1': {
+        name: 'e-1⃣',
+        styles: ` h1 { margin: 1rem 0; }`,
+    },
     'main': 'e-💩',
     'figure': 'e-📈',
     'figcaption': 'e-📰',
-    'img': 'e-🖼️',
+    'img': {
+        name: 'e-🖼️',
+        attributes: ['width', 'src', 'alt'],
+    },
     'small': 'e-🤫',
-    'footer': 'e-🦶',
+    'footer': {
+        name: 'e-🦶',
+        styles: ` footer { clear: both; }`,
+    },
 };
 
-// if (!ce) {
+if (!ce) {
     // fall back to old behavior.
     fallbackElements();
-// }
+} else {
+    registerCustomElements();
+}
 
 function fallbackElements() {
     document.body.style.opacity = '0';
@@ -26,7 +40,8 @@ function fallbackElements() {
         // replace all occurences of custom elements with normal elements.
         for (const tag of Object.keys(elementsTable)) {
             const custom = elementsTable[tag];
-            const lel = document.getElementsByTagName(custom);
+            const customName = custom.name || custom;
+            const lel = document.getElementsByTagName(customName);
             for (const e of Array.from(lel)) {
                 const repl = document.createElement(tag);
                 for (const {name, value} of Array.from(e.attributes)) {
@@ -40,4 +55,40 @@ function fallbackElements() {
         }
         document.body.style.opacity = '1';
     }, false);
+}
+
+function registerCustomElements() {
+    // do not use customized built-in elements as it is not widely supported for now.
+    for (const tag of Object.keys(elementsTable)) {
+        const custom = elementsTable[tag];
+        const customName = custom.name || custom;
+        const customAttrs = custom.attributes || [];
+
+        const tagCls = class extends HTMLElement {
+            static get observedAttributes() {
+                return customAttrs;
+            }
+            constructor() {
+                super();
+
+                this.attachShadow({mode: 'open'});
+                const innerElement = this.innerElement = document.createElement(tag);
+
+                if (custom.styles) {
+                    const style = document.createElement('style');
+                    style.textContent = custom.styles;
+                    this.shadowRoot.appendChild(style);
+                }
+
+                const slot = document.createElement('slot');
+                innerElement.appendChild(slot);
+                this.shadowRoot.appendChild(innerElement);
+            }
+            attributeChangedCallback(name, _, newValue) {
+                this.innerElement.setAttribute(name, newValue);
+            }
+        };
+
+        customElements.define(customName, tagCls);
+    }
 }

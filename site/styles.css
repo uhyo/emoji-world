@@ -1,34 +1,44 @@
+e-🖋️ {
+  display: block;
+  margin: 1em 0;
+}
+
 body {
   font-size: 1.8rem;
 }
 
-body header h1 {
+body e-🗣️ e-1⃣ {
+  margin: 1rem 0;
   font-size: 4rem;
   text-align: center;
 }
-h1 img.emoji {
+e-1⃣ img.emoji {
   width: 4rem;
+}
+
+e-🤫 img.emoji {
+  width: 1rem;
 }
 
 img.emoji {
   width: 1.8rem;
 }
 
-figure {
+e-📈 {
   margin: 0.2em auto;
   padding: 1em 1em 0.5em 1em;
   background-color: #d4e9ff;
-  width: 224px;
+  width: 240px;
   text-align: center;
 }
 
 @media (min-width: 600px) {
-  figure {
+  e-📈 {
     float: left;
     margin: 0 1em 1em;
   }
 }
 
-footer {
+e-🦶 {
   clear: both;
 }
