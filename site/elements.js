@@ -55,6 +55,33 @@ function fallbackElements() {
         }
         document.body.style.opacity = '1';
     }, false);
+    // fix styles for custom elements.
+    fixStyles();
+}
+function fixStyles() {
+    const elementsBackMap = {};
+    for (const tag of Object.keys(elementsTable)) {
+        const custom = elementsTable[tag];
+        elementsBackMap[custom.name || custom] = tag;
+    }
+    for (const st of Array.from(document.styleSheets)) {
+        for (const r of Array.from(st.cssRules)) {
+            fixRule(r);
+        }
+    }
+
+    function fixRule(r) {
+        if (r.cssRules) {
+            for (const r2 of Array.from(r.cssRules)) {
+                fixRule(r2);
+            }
+        }
+        if (r.selectorText) {
+            r.selectorText = r.selectorText.replace(/\b(e-.*)(?:\s|$)/g, (str, elm) => {
+                return elementsBackMap[elm] || str;
+            });
+        }
+    }
 }
 
 function registerCustomElements() {
